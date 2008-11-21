@@ -1,0 +1,52 @@
+CUnitWin32 is a unit testing framework for C/C++ for Microsoft Windows. 
+
+**** We interrupt this program for a very important message ****
+
+Copyright (C) 2008 Dushara Jayasinghe.
+
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A 
+PARTICULAR PURPOSE.
+
+**** Now back to our regular broadcast ****
+
+
+So why another unit testing framework? There was nothing out there that
+met my requirements. Namely:
+
+1. It has to work in Microsoft Windows (yeah, yeah I know)
+
+2. Tests should be independent. That means global/static variables HAVE 
+   to be in a known state. That means each test has to execute as a 
+   seperate process.
+   
+3. Something free would be nice.
+
+Maybe there is something out there, but I didn't find it :-)
+
+So how do I use it? (you ask) Simple (I say). Look at the sample code.
+
+1. The source being tested resides within the 'Sample' directory.
+2. The test harness is within 'test-sample'
+3. The framework is main.c and getopt.c/.h
+4. test-sample\test_def.h contains the unit tests.
+    
+    The macro DEFINE_TEST( testname ) is used to add tests to the suite.
+    
+    Add the actual test code as...
+    
+        void testname(void)
+        { 
+         ...
+         TEST_ASSERT(condition);
+        }
+        
+    ...within the TEST_DECL_ONCE section.
+    
+Now one thing you'll find is, you can't put a break point inside a test
+(It won't work). Well actually it will but you have to provide the
+following command line argument:
+
+    --test testname
+    
+Well that's it really. So go forth and test!
