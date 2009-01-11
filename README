@@ -43,6 +43,10 @@ So how do I use it? (you ask) Simple (I say). Look at the sample code.
         
     ...within the TEST_DECL_ONCE section.
     
+5. The sample code contains setup/teardown handlers. If you don't need these
+   simply remove the TEST_SETUP and/or TEST_TEARDOWN macros in
+   test-sample\test_def.h
+   
 Now one thing you'll find is, you can't put a break point inside a test
 (It won't work). Well actually it will but you have to provide the
 following command line argument:

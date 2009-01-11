@@ -35,6 +35,14 @@ void inc_fails(void);
 
 #include "test_def.h"
 
+#ifndef TEST_SETUP
+#define TEST_SETUP()
+#endif
+
+#ifndef TEST_TEARDOWN
+#define TEST_TEARDOWN()
+#endif
+
 /******************************************************************************
 	Defines
 ******************************************************************************/
@@ -260,9 +268,15 @@ static LONG WINAPI vxl_exception_filter( struct _EXCEPTION_POINTERS *ExceptionIn
 {
 	// CPU exception (e.g. Access violation div 0 etc).
 	TEST_ASSERT(0);
+	TEST_TEARDOWN();
 	return EXCEPTION_EXECUTE_HANDLER;
 }
 
+
+static void do_teardown(void)
+{
+	TEST_TEARDOWN();
+}
 
 /******************************************************************************
 	Global functions
@@ -317,8 +331,10 @@ int _tmain( int argc, TCHAR *argv[] )
 		if(do_test && find_test(do_test))
 		{
 			SetUnhandledExceptionFilter( vxl_exception_filter );
+			atexit( do_teardown );
 
 			print_test(do_test);
+			TEST_SETUP();
 			ptest->function();
 		}
 		else
