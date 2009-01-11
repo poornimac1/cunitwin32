@@ -28,9 +28,26 @@
 
 #include "sample.h"
 
+#define TEST_SETUP		test_setup
+#define TEST_TEARDOWN	test_teardown
+
 /******************************************************************************
 	Test functions
 ******************************************************************************/
+
+void test_setup(void)
+{
+	// There's no setup code. You can undefine TEST_SETUP and get rid of this
+	// function
+}
+
+
+void test_teardown(void)
+{
+	// There's no teardown code. You can undefine TEST_TEARDOWN and get rid of
+	// this function
+}
+
 
 static void pass(void)
 {
