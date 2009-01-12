@@ -1,0 +1,5 @@
+Reminder (todo automate this)
+1. Update CHANGES
+2. create a tag for new version
+3. export (svn export tags\X.X.X \<dir>\CUnitWin32
+4. Create a ZIp CUnitWin32-x.y.z (include CUnitWin32 dir within it)
